@@ -13,6 +13,7 @@ import javax.persistence.Query;
 
 import ec.edu.ups.libreria.modelo.Autor;
 import ec.edu.ups.libreria.modelo.Categoria;
+import ec.edu.ups.libreria.modelo.Libro;
 
 @Stateless
 public class AutorDAO {
@@ -23,9 +24,9 @@ public class AutorDAO {
 	@Inject
 	private Connection con;
 	
+
 	@Inject
-	private LibroDAO daolibro;
-	
+	private LibroDAO daoLibeo;
 	
 	public boolean insertautor(Autor autor) {
 		em.persist(autor);
@@ -47,7 +48,7 @@ public class AutorDAO {
 		res.next();
 		categoria.setId_autor(res.getInt("id_autor"));
 		categoria.setNombre(res.getString("nombre"));
-		categoria.setLibros(daolibro.readLibro(res.getInt("id_libro")));
+		categoria.setLibro(daoLibeo.readLibro(res.getInt("id_libro")));
 		ps.execute();
 		ps.close();
 		return categoria;
@@ -56,9 +57,28 @@ public class AutorDAO {
 	public List<Autor> getListAutor() {
 		String jpdl = "SELECT v FROM Autor v ";
 		
-		Query q = em.createQuery(jpdl, Categoria.class);
+		Query q = em.createQuery(jpdl, Autor.class);
 		
 		return (List<Autor>) q.getResultList();
+	}
+	
+	public List<Autor> getListProveedorNombre(String nombre){
+		String jpdl = "SELECT * FROM Autor  WHERE id_autor = ?1 ";
+		
+		Query q = em.createQuery(jpdl, Autor.class);
+		q.setParameter(1, nombre);
+		return (List<Autor>) q.getResultList();
+	}
+	public int contarAutor() throws SQLException {
+		int s;
+		String sql = "SELECT MAX (id_autor) FROM Autor";
+		PreparedStatement ps = con.prepareStatement(sql);
+		ResultSet res = ps.executeQuery();
+		res.next();
+		s = res.getInt(1) + 1;
+		ps.execute();
+		ps.close();
+		return s;
 	}
 }
 

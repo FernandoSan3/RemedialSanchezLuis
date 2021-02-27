@@ -1,0 +1,65 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<title>CLiente</title>
+	<style type="text/css" media="all">
+@import "/donBosquito/blue-ice-813371382/globa.css";
+
+@import "/donBosquito/blue-ice-813371382/Label.css";
+
+@import "/donBosquito/blue-ice-813371382/IniciarSesion.css";
+</style>
+</h:head>
+<body>
+
+	<div id="wrapper">
+
+		<h:form id="crear">
+			<div id="CrearUsuario">
+				<div id="polizasCuadro">
+					<div id="ivaloresPolizasTitulo">
+						<h1>Consultar Libro</h1>
+					</div>
+					<div>
+						<h:panelGrid columns="4" cellpadding="5">
+
+							<h:outputLabel for="@next" value="NOMBRE: " style="float: right;" />
+							<h:inputText class="form__field2 "
+								value="#{productoBeans.libro.nombre}" />
+							<h:message for="@previous" />
+							<h:outputText />
+
+							<h:outputLabel for="@next" value="Stock:" style="float: right;" />
+							<h:inputText id="idField" class="form__field2"
+								value="#{productoBeans.libro.stock}" />
+							<h:message for="@previous" />
+							<h:outputText />
+
+							<h:outputText />
+							<h:commandButton value="Consulta" class="btnBuscar" type="submit" update="@crear" actionListener="#{productoBeans.buscar()}">
+								
+								
+							</h:commandButton>
+							<h:commandButton value="Limpiar" update="@crear"
+								class="btnLimpiar" />
+							<h:outputText />
+
+
+
+						</h:panelGrid>
+					</div>
+				</div>
+			</div>
+
+		</h:form>
+	</div>
+
+
+</body>
+</html>

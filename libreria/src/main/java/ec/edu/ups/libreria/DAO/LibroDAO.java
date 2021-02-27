@@ -22,6 +22,12 @@ public class LibroDAO {
 	@Inject
 	private Connection con;
 	
+	@Inject
+	private AutorDAO daoAutor;
+	
+	@Inject
+	private CategoriaDAO daoCategoria;
+	
 	public boolean insertLibro(Libro libro) {
 		em.persist(libro);
 		return true;
@@ -65,6 +71,7 @@ public class LibroDAO {
 		libro.setId_libro(res.getInt("id_libro"));
 		libro.setNombre(res.getString("nombre"));
 		libro.setStock(res.getInt("stock"));
+		libro.setCategoria(daoCategoria.readCategoria(res.getInt("id_categoria")));
 		ps.execute();
 		ps.close();
 		return libro;
@@ -77,6 +84,7 @@ public class LibroDAO {
 		
 		return (List<Libro>) q.getResultList();
 	}
+	
 	
 
 }

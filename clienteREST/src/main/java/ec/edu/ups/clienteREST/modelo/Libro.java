@@ -1,35 +1,19 @@
-package ec.edu.ups.libreria.modelo;
+package ec.edu.ups.clienteREST.modelo;
 
-import java.io.Serializable;
-import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
-import javax.persistence.Table;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-@Entity
-@Table (name="LIBRO")
-public class Libro  {
-	
 
-	@Id
-	@Column(name="id_libro")
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Libro {
+
+
 	private int id_libro;
 	
-	@Column(name="nombre")
 	private String nombre;
 
-	@Column(name="stock")
 	private int stock;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_categoria")
 	private Categoria categoria;
 
 
@@ -86,18 +70,5 @@ public class Libro  {
 		return "Libro [id_libro=" + id_libro + ", nombre=" + nombre + ", stock=" + stock + ", categoria=" + categoria
 				+ "]";
 	}
-	
-	
-
-
-
-
-	
-
-	
-
-	
-	
-	
 	
 }

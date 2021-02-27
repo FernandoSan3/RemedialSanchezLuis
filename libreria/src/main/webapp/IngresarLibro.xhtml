@@ -20,12 +20,6 @@
 <body> 
 
 <div id="wrapper">
-	<div id="panel">
-		
-		<div>
-			<div class="warppers">
-				<div class="panels">
-					<div class="panel" id="one-panel">
 						<h:form id="crear">						
 							<div id="CrearUsuario">
 								<div id="polizasCuadro">
@@ -46,8 +40,8 @@
 											<h:outputText  />
 											
 											
-											<h:outputLabel for="@next" value="Autore:" class= "form_field_CrearPoliza"/>
-											<p:selectOneMenu style="width:79% " value="#{polizaBean.aux}" required="true">
+											<h:outputLabel for="@next" value="Autores:" class= "form_field_CrearPoliza"/>
+											<p:selectOneMenu style="width:79% " value="#{librosBeans.autor.nombre}" required="true">
 												<f:selectItems value="#{librosBeans.listaAutor}" var="autor"
 													 itemLabel="#{autor.nombre}" itemValue="#{autor.nombre}" />
 												
@@ -56,8 +50,8 @@
 											<h:message for="@previous" />
 										    <h:outputText  />
 										    
-										    <h:outputLabel for="@next" value="Autore:" class= "form_field_CrearPoliza"/>
-											<p:selectOneMenu style="width:79% " value="#{polizaBean.aux}" required="true">
+										    <h:outputLabel for="@next" value="Categorias:" class= "form_field_CrearPoliza"/>
+											<p:selectOneMenu style="width:79% " value="#{librosBeans.categoia.nombre}" required="true">
 												<f:selectItems value="#{librosBeans.listaCategoria}" var="categoria"
 													 itemLabel="#{categoria.nombre}" itemValue="#{categoria.nombre}" />
 												
@@ -67,10 +61,9 @@
 										    <h:outputText  />
 																						
 											<h:outputText/>
-											<h:commandButton value="Buscar Cedula" class="btnBuscar"  type="submit" update="@crear" actionListener="#{librosBeans.crearLibro()}">
-												
+											<h:commandButton value="Crear" class="btnBuscar"  type="submit" update="@crear" actionListener="#{librosBeans.crearLibro()}">
 											 </h:commandButton>
-											<h:commandButton  value="Limpiar" update ="@crear"  class="btnLimpiar"  />
+											<h:outputText  />
 											<h:outputText  />
 											
 											
@@ -81,13 +74,6 @@
 							</div>
 							
 						</h:form>	
-					</div>
-
-				</div>
-			</div>
-		</div>
-	
-	</div>
 
 </div>
 

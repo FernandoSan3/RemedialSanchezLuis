@@ -26,6 +26,8 @@ public class LibrosBeans {
 	private List<Categoria> listaCategoria = new ArrayList<>();
 	private List<Autor> listaAutor= new ArrayList<>();
 	
+	private List<Autor> listaAuto = new ArrayList<>();;
+	
 	@Inject
 	private LibroDAO daoLibro;
 	
@@ -43,6 +45,7 @@ public class LibrosBeans {
 	public void init() {
 		listaCategoria = daoCategoria.getListCategoria();
 		listaAutor = daoAutor.getListAutor();
+		
 	}
 	
 	public void crearLibro() throws Exception {
@@ -57,28 +60,32 @@ public class LibrosBeans {
 			libro.setNombre(libro.getNombre());
 			libro.setStock(libro.getStock());
 			
-			if(autor.getNombre() == null) {
-				FacesUtils.msgError("Error", "SELECCIONE UN AUTOR");
-			} else {
-				daoLibro.insertLibro(libro);
-				auto = daoAutor.buscarAutor(autor.getNombre());
-				
-				autor.setId_autor(auto.getId_autor());
-				autor.setNombre(autor.getNombre());
-				autor.setLibros(libro);
-				
-			}
+			
 			
 			if(categoia.getNombre() == null) {
 				FacesUtils.msgError("Error", "SELECCIONE UNa Categoria");
 			} else {
+			
+			
+				categori = daoCategoria.buscarCategoria(categoia.getNombre());
+				categoia.setId_categoria(categori.getId_categoria());
+				categoia.setNombre(categoia.getNombre());
+				libro.setCategoria(categoia);
+			}
+			System.out.println(libro);
+			daoLibro.insertLibro(libro);
+			
+			if(autor.getNombre() == null) {
+				FacesUtils.msgError("Error", "SELECCIONE UN AUTOR");
+			} else {
 				
-			
-			
-			categori = daoCategoria.buscarCategoria(categoia.getNombre());
-			categoia.setId_categoria(categori.getId_categoria());
-			categoia.setNombre(categoia.getNombre());
-			categoia.setLibros(libro);
+				auto = daoAutor.buscarAutor(autor.getNombre());
+				
+				autor.setId_autor(daoAutor.contarAutor());
+				autor.setNombre(autor.getNombre());
+				autor.setLibro(libro);
+				daoAutor.insertautor(autor);
+				
 			}
 			
 
@@ -127,6 +134,14 @@ public class LibrosBeans {
 
 	public void setCategoia(Categoria categoia) {
 		this.categoia = categoia;
+	}
+
+	public List<Autor> getListaAuto() {
+		return listaAuto;
+	}
+
+	public void setListaAuto(List<Autor> listaAuto) {
+		this.listaAuto = listaAuto;
 	}
 	
 	

@@ -22,8 +22,6 @@ public class CategoriaDAO {
 	@Inject
 	private Connection con;
 	
-	@Inject
-	private LibroDAO daolibro;
 	
 
 	public boolean insertCategoria(Categoria categoria) {
@@ -46,7 +44,6 @@ public class CategoriaDAO {
 		res.next();
 		categoria.setId_categoria(res.getInt("id_categoria"));
 		categoria.setNombre(res.getString("nombre"));
-		categoria.setLibros(daolibro.readLibro(res.getInt("id_libro")));
 		ps.execute();
 		ps.close();
 		return categoria;

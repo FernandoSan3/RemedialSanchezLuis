@@ -30,10 +30,11 @@ public class ClienteServiceRES {
 	@GET
 	@Produces("application/json")
 	@Path("consulta")
-	public Mensaje consulta(@QueryParam ("nombre") String nombre) {
+	public Libro consulta(@QueryParam ("nombre") String nombre) {
 		Mensaje mensaje = new Mensaje();
+		Libro libro = null;
 		try {
-			on.buscarLibro(nombre);
+			libro = on.buscarLibro(nombre);
 			mensaje.setCode("OK");
 			mensaje.setMessage("Eliminado Correctamente");
 		} catch (SQLException e) {
@@ -43,7 +44,7 @@ public class ClienteServiceRES {
 			mensaje.setMessage("Eliminado Incorrectamente");
 			
 		}
-		return mensaje;
+		return libro;
 	}
  
 	
