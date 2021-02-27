@@ -26,9 +26,7 @@ public class Autor implements Serializable {
 	@Column(name="nombre")
 	private String nombre;
 	
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_libro")
-	private Libro libros;
+	
 
 	public int getId_autor() {
 		return id_autor;
@@ -46,18 +44,12 @@ public class Autor implements Serializable {
 		this.nombre = nombre;
 	}
 
-	public Libro getLibros() {
-		return libros;
-	}
-
-	public void setLibros(Libro libros) {
-		this.libros = libros;
-	}
-
 	@Override
 	public String toString() {
-		return "Autor [id_autor=" + id_autor + ", nombre=" + nombre + ", libros=" + libros + "]";
+		return "Autor [id_autor=" + id_autor + ", nombre=" + nombre + "]";
 	}
+
+	
 	
 	
 }

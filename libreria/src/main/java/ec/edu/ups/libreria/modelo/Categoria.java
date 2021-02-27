@@ -26,9 +26,6 @@ public class Categoria  implements Serializable{
 	@Column(name="nombre")
 	private String nombre;
 	
-	@OneToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name="id_libro")
-	private Libro libros;
 
 	public int getId_categoria() {
 		return id_categoria;
@@ -46,18 +43,11 @@ public class Categoria  implements Serializable{
 		this.nombre = nombre;
 	}
 
-	public Libro getLibros() {
-		return libros;
-	}
-
-	public void setLibros(Libro libros) {
-		this.libros = libros;
-	}
-
 	@Override
 	public String toString() {
-		return "Categoria [id_categoria=" + id_categoria + ", nombre=" + nombre + ", libros=" + libros + "]";
+		return "Categoria [id_categoria=" + id_categoria + ", nombre=" + nombre + "]";
 	}
+
 	
 	
 	
